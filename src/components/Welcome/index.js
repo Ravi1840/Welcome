@@ -2,12 +2,33 @@
 import {Component} from 'react'
 
 class Welcome extends Component {
+  state = {isSubscribed: true}
+
+  changeBtn = () => {
+    const {isSubscribed} = this.state
+    if (isSubscribed === true) {
+      this.setState({isSubscribed: false})
+    } else {
+      this.setState({isSubscribed: true})
+    }
+  }
+
   render() {
+    const {isSubscribed} = this.state
+
     return (
       <div>
         <h1>Welcome</h1>
         <p>Thank you! Happy Learning</p>
-        <button type="button">Subscribe</button>
+        {isSubscribed ? (
+          <button type="button" onClick={this.changeBtn}>
+            Subscribe
+          </button>
+        ) : (
+          <button type="button" onClick={this.changeBtn}>
+            Subscribed
+          </button>
+        )}
       </div>
     )
   }
